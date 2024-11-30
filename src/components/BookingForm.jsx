@@ -1,52 +1,64 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-function BookingForm({parkingSpot, onBooking}){
-    const [name, setName] = useState('');
-    const [vehicleNumber, setVehicleNumber] = useState('');
-    const [duration, setDuration] = useState('');
+function BookingForm({ spot, onClose, onBooking }) {
+  const [name, setName] = useState('');
+  const [vehicleNumber, setVehicleNumber] = useState('');
+  const [duration, setDuration] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onBooking({name, vehicleNumber, duration, parkingSpot});
-        setName('');
-        setVehicleNumber('');
-        setDuration('');
-        alert('Pemesanan Berhasil!');
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const bookingDetails = {
+      name,
+      vehicleNumber,
+      duration,
+    };
+    onBooking(spot.id, bookingDetails);
+    setName('');
+    setVehicleNumber('');
+    setDuration('');
+    alert('Pemesanan berhasil!');
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
-        <h3>Pemesanan Tempat Parkir - Spot {parkingSpot.id}</h3>
-        <label>
-            nama:
-            <input 
-                type='text'
-                value={name} 
-                onChange={(e)=>setName(e.target.value)} 
-                required
+    <div className="modal">
+      <div className="modal-content">
+        <h3>Pemesanan Spot Parkir {spot.id}</h3>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Nama:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
             />
-        </label>
-        <label>
+          </label>
+          <label>
             Nomor Kendaraan:
             <input
-                type='text'
-                value={vehicleNumber}
-                onChange={(e)=>setVehicleNumber(e.target.value)}
-                required
+              type="text"
+              value={vehicleNumber}
+              onChange={(e) => setVehicleNumber(e.target.value)}
+              required
             />
-        </label>
-        <label>
-            Durasi:
+          </label>
+          <label>
+            Durasi (jam):
             <input
-                type='number'
-                value={duration}
-                onChange={(e)=>setDuration(e.target.value)}
-                required
+              type="number"
+              value={duration}
+              onChange={(e) => setDuration(e.target.value)}
+              required
             />
-        </label>
-        <button type='submit'>Pesan</button>
-    </form>
-  )
+          </label>
+          <button type="submit">Pesan</button>
+          <button type="button" onClick={onClose}>
+            Batal
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
-export default BookingForm
+export default BookingForm;

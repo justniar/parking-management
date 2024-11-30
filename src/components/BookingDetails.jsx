@@ -1,25 +1,37 @@
 import React from 'react';
 
-function BookingDetails({ bookings }) {
+function BookingDetail({ parkingSpots }) {
+  const bookings = parkingSpots.filter((spot) => spot.occupied);
+
   return (
     <div>
       <h3>Rincian Pemesanan</h3>
       {bookings.length === 0 ? (
         <p>Tidak ada pemesanan.</p>
       ) : (
-        <ul>
-          {bookings.map((booking, index) => (
-            <li key={index}>
-              <p>Nama: {booking.name}</p>
-              <p>Nomor Kendaraan: {booking.vehicleNumber}</p>
-              <p>Durasi: {booking.duration} jam</p>
-              <p>Spot Parkir: {booking.parkingSpot.id}</p>
-            </li>
-          ))}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Spot</th>
+              <th>Nama</th>
+              <th>Nomor Kendaraan</th>
+              <th>Durasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookings.map((spot) => (
+              <tr key={spot.id}>
+                <td>{spot.id}</td>
+                <td>{spot.booking.name}</td>
+                <td>{spot.booking.vehicleNumber}</td>
+                <td>{spot.booking.duration} jam</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );
 }
 
-export default BookingDetails;
+export default BookingDetail;

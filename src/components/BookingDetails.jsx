@@ -30,7 +30,7 @@ const BookingDetail = ({ parkingSpots }) => {
         </div>
       )}
 
-    <Button onClick={handleHome}>Ke Halaman Awal</Button>
+    <Button type={"submit"} onClick={handleHome}>Ke Halaman Awal</Button>
 
     </ReceiptContainer>
   );

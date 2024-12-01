@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+export const ParkingGate = styled.div`
+  position: relative;  
+  width: 100vw;  
+  height: 100vh;  
+  overflow: hidden;
+`;
+
+export const ParkImage = styled.img`
+  width: 400px;  
+  object-fit: cover; 
+`;
+
+export const ParkButton = styled.button`
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;  
+  top: 50%;
+  left: 50%;  
+  transform: translateX(-50%); 
+  z-index: 1;
+`;
+
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

@@ -4,7 +4,7 @@ import ParkingMap from './components/ParkingMap';
 import './App.css';
 import BookingDetail from './components/BookingDetails';
 import BookingForm from './components/BookingForm';
-import { Container, Title } from './styled';
+import { Container, ParkButton, ParkingGate, Title } from './styled';
 
 function App() {
   const [parkingSpots, setParkingSpots] = useState(
@@ -15,6 +15,7 @@ function App() {
     }))
   );
   const [selectedSpot, setSelectedSpot] = useState(null);
+  const [hasParked, setHasParked] = useState(false);
 
   const handleBooking = (spotId, bookingDetails) => {
     setParkingSpots((prev) =>
@@ -26,39 +27,58 @@ function App() {
     );
   };
 
+  const handleParkClick = () => {
+    setHasParked(true);
+  }
+
   return (
     <Router>
-      <Container>
-        <Title>Sistem Pengelolaan Parkiran Mobil</Title>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <ParkingMap
-                  parkingSpots={parkingSpots}
-                  onSpotClick={(spot) => {
-                    if (!spot.occupied) {
-                      setSelectedSpot(spot); // Show booking form for selected spot
-                    }
-                  }}
-                />
-                {selectedSpot && (
-                  <BookingForm
-                    spot={selectedSpot}
-                    onBooking={handleBooking}
-                    onClose={() => setSelectedSpot(null)} // Close modal when canceled or booked
+      {!hasParked? (
+          <>
+          <ParkingGate>
+            <img 
+              src="https://res.cloudinary.com/dwynanuof/image/upload/v1733054170/gate_d6lzbj.jpg"
+              alt="Parking Gate"
+            />
+            <ParkButton onClick={handleParkClick}>Parkir</ParkButton>
+          </ParkingGate>
+          </>
+        ):(
+        <Container>
+          <Title>Sistem Pengelolaan Parkiran Mobil</Title>
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <ParkingMap
+                    parkingSpots={parkingSpots}
+                    onSpotClick={(spot) => {
+                      if (!spot.occupied) {
+                        setSelectedSpot(spot); 
+                      }
+                    }}
                   />
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/confirmation"
-            element={<BookingDetail parkingSpots={parkingSpots} />}
-          />
-        </Routes>
-      </Container>
+                  {selectedSpot && (
+                    <BookingForm
+                      spot={selectedSpot}
+                      onBooking={handleBooking}
+                      onClose={() => setSelectedSpot(null)} 
+                    />
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/confirmation"
+              element={<BookingDetail parkingSpots={parkingSpots} />}
+            />
+          </Routes>
+          </Container>
+        )}
+
+        
     </Router>
   );
 }

@@ -1,37 +1,31 @@
-import React from 'react';
+import React from "react";
+import { NoBookings, ReceiptContainer, Title3, BookingCard, BookingDetails, CarIcon } from "../styled";
 
-function BookingDetail({ parkingSpots }) {
+const BookingDetail = ({ parkingSpots }) => {
   const bookings = parkingSpots.filter((spot) => spot.occupied);
 
   return (
-    <div>
-      <h3>Rincian Pemesanan</h3>
+    <ReceiptContainer>
+      <Title3>Rincian Pemesanan</Title3>
       {bookings.length === 0 ? (
-        <p>Tidak ada pemesanan.</p>
+        <NoBookings>Tidak ada pemesanan.</NoBookings>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Spot</th>
-              <th>Nama</th>
-              <th>Nomor Kendaraan</th>
-              <th>Durasi</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((spot) => (
-              <tr key={spot.id}>
-                <td>{spot.id}</td>
-                <td>{spot.booking.name}</td>
-                <td>{spot.booking.vehicleNumber}</td>
-                <td>{spot.booking.duration} jam</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {bookings.map((spot) => (
+            <BookingCard key={spot.id}>
+              <CarIcon src="https://img.icons8.com/fluency/48/car--v1.png" alt="Car Icon" />
+              <BookingDetails>
+                <h4>Spot: {spot.id}</h4>
+                <p><strong>Nama:</strong> {spot.booking.name}</p>
+                <p><strong>Nomor Kendaraan:</strong> {spot.booking.vehicleNumber}</p>
+                <p><strong>Durasi:</strong> {spot.booking.duration} jam</p>
+              </BookingDetails>
+            </BookingCard>
+          ))}
+        </div>
       )}
-    </div>
+    </ReceiptContainer>
   );
-}
+};
 
 export default BookingDetail;

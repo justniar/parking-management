@@ -113,3 +113,61 @@ export const Button = styled.button`
       }
     `}
 `;
+
+export const ReceiptContainer = styled.div`
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+export const Title3 = styled.h3`
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+`;
+
+export const NoBookings = styled.p`
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+`;
+
+export const BookingCard = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: flex-start;
+  gap: 15px;
+`;
+
+export const CarIcon = styled.img`
+  width: 48px;
+  height: 48px;
+`;
+
+export const BookingDetails = styled.div`
+  flex-grow: 1;
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  p {
+    font-size: 0.9rem;
+    margin: 2px 0;
+    color: #555;
+  }
+`;

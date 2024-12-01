@@ -17,50 +17,54 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
     setName("");
     setVehicleNumber("");
     setDuration("");
+
     alert("Pemesanan berhasil!");
   };
 
   return (
-    <ModalOverlay>
-      <ModalContent>
-        <Title2>Pemesanan Spot Parkir {spot.id}</Title2>
-        <Form onSubmit={handleSubmit}>
-          <Label>
-            Nama:
-            <Input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </Label>
-          <Label>
-            Nomor Kendaraan:
-            <Input
-              type="text"
-              value={vehicleNumber}
-              onChange={(e) => setVehicleNumber(e.target.value)}
-              required
-            />
-          </Label>
-          <Label>
-            Durasi (jam):
-            <Input
-              type="number"
-              value={duration}
-              onChange={(e) => setDuration(e.target.value)}
-              required
-            />
-          </Label>
-          <ButtonGroup>
-            <Button type="submit">Pesan</Button>
-            <Button type="button" onClick={onClose}>
-              Batal
-            </Button>
-          </ButtonGroup>
-        </Form>
-      </ModalContent>
-    </ModalOverlay>
+    <>
+      <ModalOverlay>
+        <ModalContent>
+          <Title2>Pemesanan Spot Parkir {spot.id}</Title2>
+          <Form onSubmit={handleSubmit}>
+            <Label>
+              Nama:
+              <Input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Label>
+            <Label>
+              Nomor Kendaraan:
+              <Input
+                type="text"
+                value={vehicleNumber}
+                onChange={(e) => setVehicleNumber(e.target.value)}
+                required
+              />
+            </Label>
+            <Label>
+              Durasi (jam):
+              <Input
+                type="number"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                required
+              />
+            </Label>
+            <ButtonGroup>
+              <Button type="submit">Pesan</Button>
+              <Button type="button" onClick={onClose}>
+                Batal
+              </Button>
+            </ButtonGroup>
+          </Form>
+        </ModalContent>
+      </ModalOverlay>
+      
+    </>
   );
 };
 

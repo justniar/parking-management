@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Button, ButtonGroup, Form, Input, Label, ModalContent, ModalOverlay, Title2 } from "../styled";
 
-function BookingForm({ spot, onClose, onBooking }) {
-  const [name, setName] = useState('');
-  const [vehicleNumber, setVehicleNumber] = useState('');
-  const [duration, setDuration] = useState('');
+const BookingForm = ({ spot, onClose, onBooking }) => {
+  const [name, setName] = useState("");
+  const [vehicleNumber, setVehicleNumber] = useState("");
+  const [duration, setDuration] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,52 +14,54 @@ function BookingForm({ spot, onClose, onBooking }) {
       duration,
     };
     onBooking(spot.id, bookingDetails);
-    setName('');
-    setVehicleNumber('');
-    setDuration('');
-    alert('Pemesanan berhasil!');
+    setName("");
+    setVehicleNumber("");
+    setDuration("");
+    alert("Pemesanan berhasil!");
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h3>Pemesanan Spot Parkir {spot.id}</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
+    <ModalOverlay>
+      <ModalContent>
+        <Title2>Pemesanan Spot Parkir {spot.id}</Title2>
+        <Form onSubmit={handleSubmit}>
+          <Label>
             Nama:
-            <input
+            <Input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
             />
-          </label>
-          <label>
+          </Label>
+          <Label>
             Nomor Kendaraan:
-            <input
+            <Input
               type="text"
               value={vehicleNumber}
               onChange={(e) => setVehicleNumber(e.target.value)}
               required
             />
-          </label>
-          <label>
+          </Label>
+          <Label>
             Durasi (jam):
-            <input
+            <Input
               type="number"
               value={duration}
               onChange={(e) => setDuration(e.target.value)}
               required
             />
-          </label>
-          <button type="submit">Pesan</button>
-          <button type="button" onClick={onClose}>
-            Batal
-          </button>
-        </form>
-      </div>
-    </div>
+          </Label>
+          <ButtonGroup>
+            <Button type="submit">Pesan</Button>
+            <Button type="button" onClick={onClose}>
+              Batal
+            </Button>
+          </ButtonGroup>
+        </Form>
+      </ModalContent>
+    </ModalOverlay>
   );
-}
+};
 
 export default BookingForm;

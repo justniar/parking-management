@@ -1,9 +1,14 @@
 import React from "react";
-import { NoBookings, ReceiptContainer, Title3, BookingCard, BookingDetails, CarIcon } from "../styled";
+import { NoBookings, ReceiptContainer, Title3, BookingCard, BookingDetails, CarIcon, Button } from "../styled";
+import { useNavigate } from "react-router-dom";
 
 const BookingDetail = ({ parkingSpots }) => {
   const bookings = parkingSpots.filter((spot) => spot.occupied);
+  const navigate = useNavigate();
 
+  const handleHome = () => {
+    navigate("/");
+  }
   return (
     <ReceiptContainer>
       <Title3>Rincian Pemesanan</Title3>
@@ -24,6 +29,9 @@ const BookingDetail = ({ parkingSpots }) => {
           ))}
         </div>
       )}
+
+    <Button onClick={handleHome}>Ke Halaman Awal</Button>
+
     </ReceiptContainer>
   );
 };

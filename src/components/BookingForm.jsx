@@ -22,6 +22,8 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
     setDuration("");
 
     alert("Pemesanan berhasil!");
+    onClose();
+
     navigate("/confirmation");
   };
 

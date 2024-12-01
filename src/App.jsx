@@ -39,7 +39,7 @@ function App() {
                   parkingSpots={parkingSpots}
                   onSpotClick={(spot) => {
                     if (!spot.occupied) {
-                      setSelectedSpot(spot);
+                      setSelectedSpot(spot); // Show booking form for selected spot
                     }
                   }}
                 />
@@ -47,6 +47,7 @@ function App() {
                   <BookingForm
                     spot={selectedSpot}
                     onBooking={handleBooking}
+                    onClose={() => setSelectedSpot(null)} // Close modal when canceled or booked
                   />
                 )}
               </>

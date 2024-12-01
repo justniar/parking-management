@@ -3,6 +3,7 @@ import ParkingMap from './components/ParkingMap';
 import './App.css';
 import BookingDetail from './components/BookingDetails';
 import BookingForm from './components/BookingForm';
+import { Container, Title } from './styled';
 
 function App() {
   const [parkingSpots, setParkingSpots] = useState(
@@ -27,8 +28,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Sistem Pengelolaan Parkiran Mobil</h1>
+    <Container>
+      <Title>Sistem Pengelolaan Parkiran Mobil</Title>
       <ParkingMap
         parkingSpots={parkingSpots}
         onSpotClick={(spot) => {
@@ -46,7 +47,7 @@ function App() {
         />
       )}
       <BookingDetail parkingSpots={parkingSpots} />
-    </div>
+    </Container>
   );
 }
 

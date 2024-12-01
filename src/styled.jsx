@@ -8,8 +8,10 @@ export const ParkingGate = styled.div`
 `;
 
 export const ParkImage = styled.img`
-  width: 400px;  
-  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center; 
 `;
 
 export const ParkButton = styled.button`

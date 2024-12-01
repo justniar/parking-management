@@ -7,6 +7,7 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
   const [name, setName] = useState("");
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [duration, setDuration] = useState("");
+  const [startTime, setStartTime] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -15,11 +16,13 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
       name,
       vehicleNumber,
       duration,
+      startTime,
     };
     onBooking(spot.id, bookingDetails);
     setName("");
     setVehicleNumber("");
     setDuration("");
+    setStartTime("");
 
     alert("Pemesanan berhasil!");
     onClose();
@@ -57,6 +60,15 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
                 type="number"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
+                required
+              />
+            </Label>
+            <Label>
+              Waktu Mulai:
+              <Input
+                type="datetime-local"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
                 required
               />
             </Label>

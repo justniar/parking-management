@@ -24,6 +24,7 @@ const BookingDetail = ({ parkingSpots }) => {
                 <p><strong>Nama:</strong> {spot.booking.name}</p>
                 <p><strong>Nomor Kendaraan:</strong> {spot.booking.vehicleNumber}</p>
                 <p><strong>Durasi:</strong> {spot.booking.duration} jam</p>
+                <p><strong>Waktu Mulai:</strong>{new Date(spot.booking.startTime).toLocaleString()}</p>
               </BookingDetails>
             </BookingCard>
           ))}

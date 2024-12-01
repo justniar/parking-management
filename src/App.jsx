@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ParkingMap from './components/ParkingMap';
 import './App.css';
 import BookingDetail from './components/BookingDetails';
@@ -14,7 +15,6 @@ function App() {
     }))
   );
   const [selectedSpot, setSelectedSpot] = useState(null);
-  const [showModal, setShowModal] = useState(false);
 
   const handleBooking = (spotId, bookingDetails) => {
     setParkingSpots((prev) =>
@@ -24,30 +24,41 @@ function App() {
           : spot
       )
     );
-    setShowModal(false);
   };
 
   return (
-    <Container>
-      <Title>Sistem Pengelolaan Parkiran Mobil</Title>
-      <ParkingMap
-        parkingSpots={parkingSpots}
-        onSpotClick={(spot) => {
-          if (!spot.occupied) {
-            setSelectedSpot(spot);
-            setShowModal(true);
-          }
-        }}
-      />
-      {showModal && (
-        <BookingForm
-          spot={selectedSpot}
-          onClose={() => setShowModal(false)}
-          onBooking={handleBooking}
-        />
-      )}
-      <BookingDetail parkingSpots={parkingSpots} />
-    </Container>
+    <Router>
+      <Container>
+        <Title>Sistem Pengelolaan Parkiran Mobil</Title>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <ParkingMap
+                  parkingSpots={parkingSpots}
+                  onSpotClick={(spot) => {
+                    if (!spot.occupied) {
+                      setSelectedSpot(spot);
+                    }
+                  }}
+                />
+                {selectedSpot && (
+                  <BookingForm
+                    spot={selectedSpot}
+                    onBooking={handleBooking}
+                  />
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/confirmation"
+            element={<BookingDetail parkingSpots={parkingSpots} />}
+          />
+        </Routes>
+      </Container>
+    </Router>
   );
 }
 

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Form, Input, Label, ModalContent, ModalOverlay, Title2 } from "../styled";
+import { useNavigate } from "react-router-dom";
+
 
 const BookingForm = ({ spot, onClose, onBooking }) => {
   const [name, setName] = useState("");
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [duration, setDuration] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +22,7 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
     setDuration("");
 
     alert("Pemesanan berhasil!");
+    navigate("/confirmation");
   };
 
   return (

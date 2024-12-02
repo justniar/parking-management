@@ -20,10 +20,8 @@ const ParkingMap = ({ parkingSpots, onSpotClick }) => {
   return (
     <Stage width={800} height={600}>
       <Layer>
-        {/* Background for parking lot */}
         <Rect x={0} y={0} width={800} height={600} fill="#f0f0f0" />
 
-        {/* Road markings */}
         <Line
           points={[0, 120, 800, 120]}
           stroke="gray"
@@ -43,7 +41,6 @@ const ParkingMap = ({ parkingSpots, onSpotClick }) => {
           dash={[10, 10]}
         />
 
-        {/* Parking spots */}
         {rows.topLeft.map((spot, index) => (
           <React.Fragment key={spot.id}>
             <Rect
@@ -172,7 +169,7 @@ const ParkingMap = ({ parkingSpots, onSpotClick }) => {
           <React.Fragment key={spot.id}>
             <Rect
               x={10 + index * 70}
-              y={-260}
+              y={260}
               width={60}
               height={90}
               fill={spot.occupied ? "#f28b82" : "#ccff90"}

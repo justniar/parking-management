@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, ButtonGroup, Form, Input, Label, ModalContent, ModalOverlay, Title2 } from "../styled";
 import { useNavigate } from "react-router-dom";
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
 
 const BookingForm = ({ spot, onClose, onBooking }) => {
   const [name, setName] = useState("");
@@ -24,9 +25,9 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
     setDuration("");
     setStartTime("");
 
-    alert("Pemesanan berhasil!");
     onClose();
-
+    toast.success("berhasil")
+    
     navigate("/confirmation");
   };
 
@@ -81,7 +82,7 @@ const BookingForm = ({ spot, onClose, onBooking }) => {
           </Form>
         </ModalContent>
       </ModalOverlay>
-      
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnHover />
     </>
   );
 };

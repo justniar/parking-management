@@ -5,6 +5,8 @@ import './App.css';
 import BookingDetail from './components/BookingDetails';
 import BookingForm from './components/BookingForm';
 import { Container, ParkButton, ParkingGate, Title } from './styled';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [parkingSpots, setParkingSpots] = useState(
@@ -77,8 +79,7 @@ function App() {
           </Routes>
           </Container>
         )}
-
-        
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} closeOnClick pauseOnHover />
     </Router>
   );
 }
